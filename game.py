@@ -896,8 +896,13 @@ class Game:
 
     def play_again(self):
         print()
-        again = self.get_input(f"{CYAN}{self.tr('play_again')}{RESET}").lower()
-        return again == "y" or again == "yes"
+        while True:
+            again = self.get_input(f"{CYAN}{self.tr('play_again')}{RESET}").lower()
+            if again in ("y", "yes"):
+                return True
+            if again in ("n", "no"):
+                return False
+            print(f"{RED}{self.tr('invalid_choice')}{RESET}")
 
 
 # ── Main ──────────────────────────────────────────────────────────
